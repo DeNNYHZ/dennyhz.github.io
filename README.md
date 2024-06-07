@@ -1,18 +1,38 @@
-# [Global: HTML5 website template](http://buckymaler.com/global)
+### Launch Options
+```
+-novid -high -threads 16 -noforcemspd -noforcemaccel -noforcemparms -console -refresh 240 -freq 240 -tickrate 128 +cl_cmdrate 128 +cl_updaterate 128 +cl_interp_ratio 1 -d3d9ex -language textmod
+```
 
-### [Featured on Freebiesbug](http://freebiesbug.com/psd-freebies/global-futuristic-one-page-portfolio-psd-html/)
+### Plugins
+- [Simple Radar](http://simpleradar.com/)
+- [TextMod](https://gist.github.com/xPaw/056b29be7ae9c143ed623a9c4c10cf50)
 
-Global is a modern and sleek website template crafted for professionals in the creative industry. Global can serve as a single page portfolio or be easily modified to serve as the perfect beginning for a hip creative agency.
+### Guides
+- [NVIDIA Reflex: Lowest Latency In Counter-Strike 2](https://steamcommunity.com/sharedfiles/filedetails/?id=3039023209)
+- [Refrag.gg: Optimization Guide](https://wiki.refrag.gg/en/pc-optimization-increase-fps-csgo)
 
-The original PSD is included and was provided by [Sergey Melnik](https://www.behance.net/SergeyMelnik).
+### Video Settings
 
-This project was developed with HTML5, Sass, jQuery, and Hammer.js.
+|Setting|Value|
+|:---|---|
+|Boost Player Contrast| Disabled |
+|Wait for Vertical Sync | Disabled |
+|Multisampling Anti-Aliasing Mode | 8x MSAA|
+|Global Shadow Quality | High |
+|Model/Texture Detail | High |
+|Texture Filtering Mode | Bilinear |
+|Shader Detail | Low |
+|Particle Detail | Low |
+|Ambient Occlusion | Disabled |
+|High Dynamic Range | Quality |
+|FidelityFX Super Resolution | Disabled (Highest Quality) |
+|NVIDIA Reflex Low Latency | Disabled (due cs2 bug latency. i prefer off) |
 
-Performance basics are covered: assets are minified into single CSS and JS files, and the images are optimized.
 
-[LIVE PREVIEW](http://buckymaler.com/global)
-
-## Misc:
-
-* Follow Bucky: [Twitter](https://twitter.com/BuckyMaler), [GitHub](https://github.com/BuckyMaler)
-* Follow Sergey: [Dribbble](https://dribbble.com/sergeymelnik), [Bēhance](https://www.behance.net/SergeyMelnik)
+### Other Settings
+- Mouse DPI: 1600
+- Ingame Sensitivity: 0.7725
+- Mouse Polling Rate: 1000hz
+- 1280x960
+- FOV X: 106
+- FOV Y: 74
