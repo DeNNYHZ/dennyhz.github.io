@@ -7,7 +7,7 @@ const education = [
     period: "2021 — 2025",
     institution: "Petra Christian University",
     degree: "Bachelor of Computer Science",
-    gpa: "GPA 3.15./4.00",
+    gpa: "GPA 3.15/4.00",
     location: "Surabaya, Indonesia",
   },
   {
