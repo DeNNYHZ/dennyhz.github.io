@@ -2,50 +2,67 @@
 
 import Link from "next/link"
 import { ThemeToggle } from "./theme-toggle"
-import { MapPin, Mail, Phone } from "lucide-react"
+import { LocaleSwitcher } from "./locale-switcher"
+import { MapPin, Mail, Phone, Globe } from "lucide-react"
+import { useLocale } from "@/lib/locale"
 
 export function Header() {
+  const { data } = useLocale()
   return (
     <header className="space-y-6 animate-in fade-in slide-in-from-left-4 duration-500">
       <div className="flex items-start justify-between">
         <div className="space-y-1">
           <h1 className="text-3xl font-semibold tracking-tight text-foreground lg:text-4xl">
-            Deni Setiawan
+            {data.name}
           </h1>
           <p className="text-lg text-muted-foreground">
-            Backend Developer
+            {data.role}
           </p>
         </div>
-        <ThemeToggle />
+        <div className="flex items-center gap-2">
+          <LocaleSwitcher />
+          <ThemeToggle />
+        </div>
       </div>
 
       <p className="text-muted-foreground leading-relaxed animate-in fade-in slide-in-from-left-4 duration-500 delay-100">
-        I build accessible, scalable backend systems and APIs for the web.
+        {data.tagline}
       </p>
 
-      <div className="space-y-2 text-sm text-muted-foreground animate-in fade-in slide-in-from-left-4 duration-500 delay-200">
+      <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground animate-in fade-in slide-in-from-left-4 duration-500 delay-200">
         <div className="flex items-center gap-2">
           <MapPin className="h-4 w-4" />
-          <span>Surabaya, Indonesia</span>
+          <span>{data.location}</span>
         </div>
         <div className="flex items-center gap-2">
           <Phone className="h-4 w-4" />
-          <span>+62-851-8665-1337</span>
+          <span>{data.phone}</span>
         </div>
         <div className="flex items-center gap-2">
           <Mail className="h-4 w-4" />
           <Link
-            href="mailto:iamdenisetiawan@gmail.com"
+            href={`mailto:${data.email}`}
             className="hover:text-foreground transition-colors duration-200 underline-offset-4 hover:underline"
           >
-            iamdenisetiawan@gmail.com
+            {data.email}
+          </Link>
+        </div>
+        <div className="flex items-center gap-2">
+          <Globe className="h-4 w-4" />
+          <Link
+            href={data.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-foreground transition-colors duration-200 underline-offset-4 hover:underline"
+          >
+            {data.website.replace("https://", "")}
           </Link>
         </div>
       </div>
 
       <div className="flex items-center gap-4 pt-2 animate-in fade-in slide-in-from-left-4 duration-500 delay-300">
         <Link
-          href="https://linkedin.com/in/denisetiawan"
+          href={data.linkedin}
           target="_blank"
           rel="noopener noreferrer"
           className="text-muted-foreground hover:text-foreground transition-all duration-200 hover:scale-110"
@@ -56,7 +73,7 @@ export function Header() {
           </svg>
         </Link>
         <Link
-          href="https://github.com/DeNNYHZ"
+          href={data.github}
           target="_blank"
           rel="noopener noreferrer"
           className="text-muted-foreground hover:text-foreground transition-all duration-200 hover:scale-110"

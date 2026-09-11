@@ -1,18 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react"
-
-const navItems = [
-  { id: "about", label: "About" },
-  { id: "experience", label: "Experience" },
-  { id: "education", label: "Education" },
-  { id: "projects", label: "Projects" },
-  { id: "skills", label: "Skills" },
-  { id: "certifications", label: "Certifications" },
-]
+import { useLocale } from "@/lib/locale"
 
 export function Navigation() {
   const [activeSection, setActiveSection] = useState("about")
+  const { data } = useLocale()
+  const navItems = data.nav
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -34,7 +28,7 @@ export function Navigation() {
     }
 
     return () => observer.disconnect()
-  }, [])
+  }, [navItems])
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
@@ -79,7 +73,7 @@ export function Navigation() {
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
           <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
         </span>
-        <span className="text-xs text-muted-foreground">Open to work</span>
+        <span className="text-xs text-muted-foreground">{data.status}</span>
       </div>
     </nav>
   )

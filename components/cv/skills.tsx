@@ -1,28 +1,11 @@
 "use client"
 
 import { useAnimateOnScroll } from "@/hooks/use-animate-on-scroll"
-
-const skillCategories = [
-  {
-    title: "Languages",
-    skills: ["Bahasa Indonesia", "English"],
-  },
-  {
-    title: "Backend",
-    skills: ["Go", "Python", "Java", "PostgreSQL", "MongoDB"],
-  },
-  {
-    title: "Frontend",
-    skills: ["HTML", "CSS", "JavaScript", "Next.js", "Flutter"],
-  },
-  {
-    title: "Tools",
-    skills: ["JetBrains IDE", "Android Studio", "Git", "Postman", "PgAdmin", "Supabase", "Docker"],
-  },
-]
+import { useLocale } from "@/lib/locale"
 
 export function Skills() {
   const { ref, isVisible } = useAnimateOnScroll<HTMLElement>()
+  const { data } = useLocale()
 
   return (
     <section
@@ -33,11 +16,11 @@ export function Skills() {
       }`}
     >
       <h2 className="text-xs font-medium uppercase tracking-widest text-foreground mb-8">
-        Skills
+        {data.sectionTitles.skills}
       </h2>
 
       <div className="space-y-6">
-        {skillCategories.map((category, index) => (
+        {data.skillCategories.map((category, index) => (
           <div key={index}>
             <h3 className="text-sm font-medium text-foreground mb-3">
               {category.title}
@@ -57,6 +40,22 @@ export function Skills() {
             </div>
           </div>
         ))}
+
+        <div>
+          <h3 className="text-sm font-medium text-foreground mb-3">
+            {data.languages.length ? "Languages" : ""}
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {data.languages.map((lang) => (
+              <span
+                key={lang}
+                className="inline-flex items-center rounded-full bg-secondary px-3 py-1 text-sm text-secondary-foreground transition-all duration-200 hover:scale-105 hover:bg-secondary/80"
+              >
+                {lang}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

@@ -1,26 +1,11 @@
 "use client"
 
 import { useAnimateOnScroll } from "@/hooks/use-animate-on-scroll"
-
-const education = [
-  {
-    period: "2021 — 2025",
-    institution: "Petra Christian University",
-    degree: "Bachelor of Computer Science",
-    gpa: "GPA 3.15/4.00",
-    location: "Surabaya, Indonesia",
-  },
-  {
-    period: "2019 — 2021",
-    institution: "Bopkri 1 Senior High School Yogyakarta",
-    degree: "Graduate of Social Sciences",
-    gpa: null,
-    location: "Yogyakarta, Indonesia",
-  },
-]
+import { useLocale } from "@/lib/locale"
 
 export function Education() {
   const { ref, isVisible } = useAnimateOnScroll<HTMLElement>()
+  const { data } = useLocale()
 
   return (
     <section
@@ -31,11 +16,11 @@ export function Education() {
       }`}
     >
       <h2 className="text-xs font-medium uppercase tracking-widest text-foreground mb-8">
-        Education
+        {data.sectionTitles.education}
       </h2>
 
       <div className="space-y-8">
-        {education.map((edu, index) => (
+        {data.education.map((edu, index) => (
           <div
             key={index}
             className="group relative grid grid-cols-1 gap-4 sm:grid-cols-[140px_1fr] rounded-lg p-4 -mx-4 transition-colors duration-300 hover:bg-secondary/50"

@@ -1,9 +1,11 @@
 import { Header } from "@/components/cv/header"
 import { About } from "@/components/cv/about"
 import { Experience } from "@/components/cv/experience"
-import { Education } from "@/components/cv/education"
 import { Projects } from "@/components/cv/projects"
+import { Thesis } from "@/components/cv/thesis"
+import { Organizations } from "@/components/cv/organizations"
 import { Skills } from "@/components/cv/skills"
+import { Education } from "@/components/cv/education"
 import { Certifications } from "@/components/cv/certifications"
 import { Navigation } from "@/components/cv/navigation"
 
@@ -22,9 +24,11 @@ export default function CVPage() {
           <main className="space-y-16 lg:space-y-24">
             <About />
             <Experience />
-            <Education />
             <Projects />
+            <Thesis />
+            <Organizations />
             <Skills />
+            <Education />
             <Certifications />
           </main>
         </div>
