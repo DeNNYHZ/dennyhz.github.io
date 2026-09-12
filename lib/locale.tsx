@@ -25,10 +25,13 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     setLocaleState(detectInitialLocale())
   }, [])
 
+  useEffect(() => {
+    document.documentElement.lang = locale
+  }, [locale])
+
   const setLocale = (l: Locale) => {
     setLocaleState(l)
     localStorage.setItem("locale", l)
-    document.documentElement.lang = l
   }
 
   return (

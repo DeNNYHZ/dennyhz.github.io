@@ -5,7 +5,7 @@ import { useLocale } from "@/lib/locale"
 
 export function Navigation() {
   const [activeSection, setActiveSection] = useState("about")
-  const { data } = useLocale()
+  const { data, locale } = useLocale()
   const navItems = data.nav
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export function Navigation() {
         }
       },
       {
-        rootMargin: "-20% 0px -80% 0px",
+        rootMargin: "-10% 0px -60% 0px",
       }
     )
 
@@ -30,51 +30,31 @@ export function Navigation() {
     return () => observer.disconnect()
   }, [navItems])
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
-  }
-
   return (
-    <nav className="mt-12 hidden lg:block animate-in fade-in slide-in-from-left-4 duration-500 delay-500" aria-label="In page navigation">
-      <ul className="space-y-3">
+    <nav className="mt-8 overflow-x-auto border-y py-3 lg:border-b-0 lg:py-5" aria-label={locale === "id" ? "Navigasi bagian" : "On this page"}>
+      <ul className="flex w-max gap-1 lg:w-auto lg:flex-col">
         {navItems.map((item, index) => (
           <li
             key={item.id}
             className="animate-in fade-in slide-in-from-left-2 duration-300"
             style={{ animationDelay: `${600 + index * 50}ms` }}
           >
-            <button
-              type="button"
-              onClick={() => scrollToSection(item.id)}
-              className={`group flex items-center gap-3 text-xs uppercase tracking-widest transition-colors duration-200 ${
+            <a
+              href={`#${item.id}`}
+              aria-current={activeSection === item.id ? "location" : undefined}
+              className={`group flex min-h-10 items-center gap-3 rounded-lg px-3 text-xs font-medium transition-colors duration-200 ${
                 activeSection === item.id
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "bg-primary/10 text-primary"
+                  : "text-muted-foreground hover:bg-secondary hover:text-foreground"
               }`}
             >
-              <span
-                className={`h-px transition-all duration-300 ${
-                  activeSection === item.id
-                    ? "w-12 bg-foreground"
-                    : "w-6 bg-muted-foreground group-hover:w-12 group-hover:bg-foreground"
-                }`}
-              />
+              <span className="hidden font-mono text-[10px] opacity-60 lg:inline" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
               <span>{item.label}</span>
-            </button>
+            </a>
           </li>
         ))}
       </ul>
 
-      <div className="mt-8 flex items-center gap-2 animate-in fade-in duration-500 delay-1000">
-        <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
-        </span>
-        <span className="text-xs text-muted-foreground">{data.status}</span>
-      </div>
     </nav>
   )
 }

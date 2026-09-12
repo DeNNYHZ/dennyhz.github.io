@@ -3,25 +3,31 @@
 import Link from "next/link"
 import { ThemeToggle } from "./theme-toggle"
 import { LocaleSwitcher } from "./locale-switcher"
-import { MapPin, Mail, Phone, Globe } from "lucide-react"
+import { MapPin, Mail, Phone, Globe, ArrowUpRight, Code2 } from "lucide-react"
 import { useLocale } from "@/lib/locale"
 
 export function Header() {
-  const { data } = useLocale()
+  const { data, locale } = useLocale()
   return (
-    <header className="space-y-6 animate-in fade-in slide-in-from-left-4 duration-500">
-      <div className="flex items-start justify-between">
-        <div className="space-y-1">
-          <h1 className="text-3xl font-semibold tracking-tight text-foreground lg:text-4xl">
+    <header className="space-y-6">
+      <a href="#content" className="sr-only focus:not-sr-only focus:block focus:text-primary">
+        {locale === "id" ? "Lewati ke konten" : "Skip to content"}
+      </a>
+      <div className="flex items-center justify-between">
+        <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-primary"><Code2 aria-hidden="true" className="h-5 w-5" /></span>
+        <div className="flex items-center gap-2"><LocaleSwitcher /><ThemeToggle /></div>
+      </div>
+      <div className="space-y-4">
+        <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs text-muted-foreground">
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />{data.status}
+        </div>
+        <div className="space-y-3">
+          <h1 className="text-5xl font-semibold tracking-[-0.05em] text-foreground sm:text-6xl lg:text-5xl">
             {data.name}
           </h1>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg font-medium text-primary">
             {data.role}
           </p>
-        </div>
-        <div className="flex items-center gap-2">
-          <LocaleSwitcher />
-          <ThemeToggle />
         </div>
       </div>
 
@@ -29,14 +35,23 @@ export function Header() {
         {data.tagline}
       </p>
 
-      <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground animate-in fade-in slide-in-from-left-4 duration-500 delay-200">
+      <div className="flex flex-wrap gap-3">
+        <a href={`mailto:${data.email}`} className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-85">
+          <Mail className="h-4 w-4" aria-hidden="true" />{locale === "id" ? "Hubungi saya" : "Get in touch"}
+        </a>
+        <a href="#projects" className="inline-flex min-h-11 items-center gap-2 rounded-lg border bg-card px-4 text-sm font-medium transition-colors hover:bg-secondary">
+          {locale === "id" ? "Lihat proyek" : "View projects"}<ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+        </a>
+      </div>
+
+      <div className="grid gap-3 border-t pt-6 text-sm text-muted-foreground">
         <div className="flex items-center gap-2">
           <MapPin className="h-4 w-4" />
           <span>{data.location}</span>
         </div>
         <div className="flex items-center gap-2">
           <Phone className="h-4 w-4" />
-          <span>{data.phone}</span>
+          <a href={`tel:${data.phone.replace(/[^+\d]/g, "")}`} className="hover:text-primary">{data.phone}</a>
         </div>
         <div className="flex items-center gap-2">
           <Mail className="h-4 w-4" />
